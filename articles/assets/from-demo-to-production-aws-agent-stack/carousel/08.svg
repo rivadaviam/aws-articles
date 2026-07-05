@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="1080" height="1350" fill="#1E2A38"/>
+
+  <text x="1000" y="110" text-anchor="end" font-family="SF Mono, Menlo, Monaco, monospace" font-size="34" fill="#8FA3B8">8/9</text>
+
+  <text x="80" y="200" font-size="36" font-weight="700" fill="#FF9900" letter-spacing="2">THE COST RULE</text>
+
+  <!-- headline -->
+  <text x="80" y="340" font-size="74" font-weight="700" fill="#F5F7FA">Find the meters</text>
+  <text x="80" y="428" font-size="74" font-weight="700" fill="#F5F7FA">before the bill.</text>
+
+  <!-- meters list -->
+  <g font-family="SF Mono, Menlo, Monaco, monospace">
+    <rect x="80" y="530" width="920" height="90" rx="8" fill="#2A3B4F"/>
+    <text x="120" y="588" font-size="42" fill="#F5F7FA">model tokens</text>
+
+    <rect x="80" y="640" width="920" height="90" rx="8" fill="#2A3B4F"/>
+    <text x="120" y="698" font-size="42" fill="#F5F7FA">session time</text>
+
+    <rect x="80" y="750" width="920" height="90" rx="8" fill="#2A3B4F"/>
+    <text x="120" y="808" font-size="42" fill="#F5F7FA">tool calls</text>
+
+    <rect x="80" y="860" width="920" height="90" rx="8" fill="#2A3B4F"/>
+    <text x="120" y="918" font-size="42" fill="#F5F7FA">egress</text>
+  </g>
+
+  <!-- orange punch -->
+  <text x="80" y="1080" font-size="46" font-weight="700" fill="#FF9900">Two days and <tspan font-family="SF Mono, Menlo, Monaco, monospace">~$363</tspan></text>
+  <text x="80" y="1140" font-size="46" font-weight="700" fill="#FF9900">taught me this one.</text>
+
+  <text x="80" y="1300" font-size="24" fill="#8FA3B8">Build. Document. Share. Repeat.</text>
+</svg>

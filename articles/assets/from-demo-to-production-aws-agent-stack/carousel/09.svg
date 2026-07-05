@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="1080" height="1350" fill="#1E2A38"/>
+
+  <text x="1000" y="110" text-anchor="end" font-family="SF Mono, Menlo, Monaco, monospace" font-size="34" fill="#8FA3B8">9/9</text>
+
+  <rect x="80" y="300" width="120" height="14" fill="#FF9900"/>
+
+  <!-- headline / the question -->
+  <text x="80" y="440" font-size="66" font-weight="700" fill="#F5F7FA">What did your</text>
+  <text x="80" y="520" font-size="66" font-weight="700" fill="#F5F7FA">first agent bill</text>
+  <text x="80" y="600" font-size="66" font-weight="700" fill="#FF9900">look like?</text>
+
+  <!-- body -->
+  <text x="80" y="740" font-size="40" fill="#F5F7FA">One number beats any</text>
+  <text x="80" y="796" font-size="40" fill="#F5F7FA">benchmark I can quote.</text>
+
+  <text x="80" y="900" font-size="40" fill="#8FA3B8">Full breakdown →</text>
+  <text x="80" y="956" font-size="40" fill="#8FA3B8">Featured section on my profile.</text>
+
+  <!-- series mark -->
+  <rect x="80" y="1060" width="920" height="110" rx="8" fill="#2A3B4F"/>
+  <text x="120" y="1128" font-size="40" font-weight="700" fill="#FF9900">Build-to-Learn with AWS GenAI</text>
+
+  <text x="80" y="1300" font-size="24" fill="#8FA3B8">Build. Document. Share. Repeat.</text>
+</svg>
