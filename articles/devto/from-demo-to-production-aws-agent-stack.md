@@ -3,7 +3,6 @@ title: "From Demo to Production: What GA Actually Means for AWS AI Agents"
 published: false
 description: "My $363 Bedrock bill taught me to ask about cost before the invoice. Here's what changes when agents run 24/7 and the meter never stops."
 tags: aws, amazonbedrock, aiagents, generativeai
-series: Build-to-Learn with AWS GenAI
 cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/from-demo-to-production-aws-agent-stack/00-cover.png"
 canonical_url: ""
 ---
