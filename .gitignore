@@ -1,0 +1,19 @@
+# Allowlist strategy — deny everything by default.
+# Only explicitly whitelisted paths are tracked.
+
+# Ignore everything at the root
+/*
+
+# Allow only these
+!/.gitignore
+!/README.md
+!/articles/
+
+# Inside articles/, deny by default again
+/articles/*
+
+# Allow only published content and its assets
+!/articles/devto/
+!/articles/assets/
+
+# Everything else (working files, drafts, notes, local tooling) stays local.
