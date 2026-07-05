@@ -4,7 +4,7 @@ published: false
 description: "My $363 Bedrock bill taught me to ask about cost before the invoice. Here's what changes when agents run 24/7 and the meter never stops."
 tags: aws, amazonbedrock, aiagents, generativeai
 series: Build-to-Learn with AWS GenAI
-cover_image: ""
+cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/from-demo-to-production-aws-agent-stack/00-cover.png"
 canonical_url: ""
 ---
 
@@ -56,9 +56,8 @@ Now the part the keynote skips. Running an agent in production runs into limits,
 
 Two quotas stand out. AgentCore raised per-agent throughput from 25 to 200 TPS, and caps active sessions at 5,000 per account. That 5,000 only applies in US East (N. Virginia) and US West (Oregon). Every other region gets 2,500 ([AgentCore release notes](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/release-notes.html)).
 
-![Bar chart: AgentCore active session quota is 5,000 per account in US East and US West, but 2,500 in every other region](../assets/from-demo-to-production-aws-agent-stack/01-session-quota-by-region.png)
+![Bar chart: AgentCore active session quota is 5,000 per account in US East and US West, but 2,500 in every other region](https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/from-demo-to-production-aws-agent-stack/01-session-quota-by-region.png)
 *The session cap nobody mentions in the keynote: deploy outside the two big US regions and you start with half the ceiling.*
-<!-- PUBLISH: swap image src to raw GitHub URL before publishing -->
 
 Sit with those for a second. 200 transactions per second per agent is generous for most workloads. But if you're fanning out parallel tool calls, it's a ceiling you can hit. The active-sessions cap is the one that bites quietly. An agent that "works for hours or days" holds a session the whole time. If your design spins up long-lived agents per user, per job, or per document, 5,000 concurrent isn't a lot. And if you deploy outside the two big US regions, you're working with half that. That's an architecture constraint, not a footnote. It's exactly the kind of number you want to know at design time, not when sessions start getting rejected in production.
 
@@ -74,9 +73,8 @@ There's a data-residency angle worth flagging too. AgentCore's Web Search runs w
 
 If I were starting an agent on this stack today (and I'll be doing exactly that in an upcoming lab), here's the order I'd follow. Not because it's the only way, but because it front-loads the questions that cost me money when I ignored them.
 
-![Flow diagram: the minimum path from idea to production — idea, harness, evaluate, policy, deploy, with the cost question asked at every gate](../assets/from-demo-to-production-aws-agent-stack/02-minimum-path.png)
+![Flow diagram: the minimum path from idea to production — idea, harness, evaluate, policy, deploy, with the cost question asked at every gate](https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/from-demo-to-production-aws-agent-stack/02-minimum-path.png)
 *Five gates, one recurring question. The order matters: evaluation before scale, policy while the surface is small.*
-<!-- PUBLISH: swap image src to raw GitHub URL before publishing -->
 
 Start with the idea and the harness. Get a single agent running with the managed harness before you touch anything fancy. One agent, one tool, one clear job. Prove the loop closes.
 
