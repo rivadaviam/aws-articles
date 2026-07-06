@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="675" fill="#1E2A38"/>
+
+  <!-- title -->
+  <text x="60" y="78" fill="#F5F7FA" font-size="40" font-weight="700">Strands and AgentCore aren't competing</text>
+  <text x="60" y="118" fill="#8FA3B8" font-size="26">One writes the agent. The other runs it at scale. (AWS AgentCore FAQ)</text>
+
+  <!-- TOP layer: AgentCore (runtime) -->
+  <rect x="140" y="170" width="700" height="110" fill="#2A3B4F"/>
+  <text x="170" y="215" fill="#F5F7FA" font-size="32" font-weight="700">AgentCore</text>
+  <text x="170" y="252" fill="#8FA3B8" font-size="24">managed runtime — deploy, scale, sessions, policy, evaluations</text>
+  <text x="880" y="232" fill="#4FC3F7" font-size="26" font-weight="700">← this runs it</text>
+
+  <!-- MIDDLE layer: Strands (authoring) -->
+  <rect x="140" y="310" width="700" height="110" fill="#2A3B4F" stroke="#FF9900" stroke-width="4"/>
+  <text x="170" y="355" fill="#F5F7FA" font-size="32" font-weight="700">Strands SDK</text>
+  <text x="170" y="392" fill="#8FA3B8" font-size="24">authoring framework — Agent, @tool, model-driven loop, your codebase</text>
+  <text x="880" y="372" fill="#FF9900" font-size="26" font-weight="700">← you write this</text>
+
+  <!-- BOTTOM layer: models -->
+  <rect x="140" y="450" width="700" height="110" fill="#2A3B4F"/>
+  <text x="170" y="495" fill="#F5F7FA" font-size="32" font-weight="700">Bedrock models</text>
+  <text x="170" y="532" fill="#8FA3B8" font-size="24">Nova, Claude, and ~100 others — the reasoning engine underneath</text>
+
+  <!-- connecting lines -->
+  <line x1="490" y1="280" x2="490" y2="310" stroke="#3A4D63" stroke-width="3"/>
+  <line x1="490" y1="420" x2="490" y2="450" stroke="#3A4D63" stroke-width="3"/>
+
+  <!-- source + footer -->
+  <text x="60" y="636" fill="#8FA3B8" font-size="22">Source: AWS Bedrock AgentCore FAQ — Strands listed as supported framework</text>
+  <text x="60" y="663" fill="#8FA3B8" font-size="22">Build. Document. Share. Repeat.</text>
+  <text x="1140" y="663" fill="#8FA3B8" font-size="22" text-anchor="end">Build-to-Learn</text>
+</svg>

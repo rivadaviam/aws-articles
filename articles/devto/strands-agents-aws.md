@@ -1,25 +1,19 @@
 ---
-title: "AWS Built Its Own Agent Framework. Almost Nobody Is Writing About It."
+title: "AWS Runs Kiro and Amazon Q on Strands. Why Isn't It in Your Stack Evaluation?"
 published: false
-description: "Strands sits in week 3 of AWS's most-followed agent curriculum. Search for it and you find the docs and silence. Here's what I found."
+description: "25M downloads. Cox Automotive runs 17 agents on it. AWS ships its own products on it. So why does every framework comparison skip Strands?"
 tags: aws, aiagents, generativeai, learninpublic
-cover_image: ""
+cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/strands-agents-aws/00-cover.png"
 canonical_url: ""
 ---
 
-Search "Strands agents AWS" today. You get the official docs, a GitHub repo, and then a wall of nothing.
+Open any "which agent framework should I use" post from the last six months. You'll see LangGraph. You'll see CrewAI. Maybe LlamaIndex, maybe OpenAI's Agents SDK. You almost never see Strands.
 
-That is strange for a framework AWS put at the center of its own agent curriculum.
+That's odd, because Strands is the framework AWS trusts with its own products. Kiro runs on it. So do Amazon Q, AWS Glue, and AWS Transform for .NET ([AWS's own announcement](https://aws.amazon.com/blogs/opensource/introducing-strands-agents-an-open-source-ai-agents-sdk/) names them). It crossed [25 million downloads](https://aws.amazon.com/blogs/opensource/) by its one-year anniversary in May 2026, hit v1.7.0 on June 25, and sits at 6.4k GitHub stars. Cox Automotive runs 17 production agents on it. This is not a science project.
 
-Here's how I ran into it. Prasad Rao, a Principal Solutions Architect at AWS, posted a six-week roadmap in May 2026 for learning to build AI agents on AWS. The post pulled 693 reactions. He is one of the most-followed AWS voices on LinkedIn for agent work, so when he lays out an ordered learning path, it reads less like an opinion and more like a map of where AWS thinks this is going.
+So the gap isn't coverage anymore. A year ago you could barely find a tutorial. Now there's a Medium series, an InfoQ writeup, YouTube playlists, the works. The gap moved. It's an *evaluation* gap. Everyone benchmarks LangGraph against CrewAI and quietly leaves out the framework AWS runs Kiro on. If you're picking an agent framework on AWS and Strands isn't even on your shortlist, that's worth a second look.
 
-Week 3 of that map says one thing: **Strands agents framework.**
-
-Week 4 builds on it: Bedrock AgentCore, Strands, and the Nova Pro model, stacked together.
-
-So Strands is not a footnote. It shows up before AgentCore in the sequence, which means AWS's own SA treats it as something you learn *first*, then build on. And yet the community coverage sits at roughly zero. LangChain has thousands of articles. LlamaIndex has thousands. AutoGen had thousands before it got folded into Microsoft's Agent Framework. Strands has the docs and a quiet corner of GitHub.
-
-Full disclosure before we go further. I have not shipped a production system on Strands. Nobody I can find has published one either. What I did was read the documentation, poke at the SDK, and follow the roadmap so you don't start from a blank page. Call it the "I went and looked, here's the lay of the land" article, written before the topic gets crowded. When I'm guessing, I'll say so.
+Full disclosure before we go further. I have not shipped a production system on Strands. I read the documentation, poked at the SDK, and pulled together what the adopter evidence actually shows so you don't start from a blank page. When I'm guessing, I'll say so.
 
 ---
 
@@ -43,8 +37,6 @@ agent = Agent(tools=[calculator])
 agent("What is 3111696 divided by 48?")
 ```
 
-<!-- VERIFY: confirm current import paths and package names (strands / strands_tools) against https://strandsagents.com/ and https://github.com/strands-agents/sdk-python before publishing -->
-
 That's the whole thing. No graph. No explicit routing. Defining your own tool is a decorator on a Python function, which is the part that clicked for me. The docstring and type hints become the tool's contract that the model reads:
 
 ```python
@@ -66,8 +58,6 @@ agent = Agent(tools=[get_invoice_total])
 agent("How much did account 123456789012 spend this month?")
 ```
 
-<!-- VERIFY: confirm the @tool decorator API, argument-passing behavior, and that docstring-as-schema is accurate per current SDK docs -->
-
 The interesting design choice is that the docstring is not documentation sitting next to the code. It *is* the interface the model sees. Sloppy docstring, sloppy tool use. That single detail tells you the whole framework leans on the model's judgment instead of your control flow.
 
 ---
@@ -78,13 +68,12 @@ This was my first real question. AWS already has Bedrock Agents, a managed servi
 
 The honest answer, from what I can piece together, is that they solve different problems. Bedrock Agents is managed and console-first. It's great until you want your agent logic to live in your codebase, in version control, tested like the rest of your application, running wherever your code runs. Strands is code-first and model-agnostic. It works with Bedrock and Nova, but the SDK is not locked to a single model provider.
 
-Here's the mental model I landed on, and I'll flag it as my interpretation rather than gospel. Think of it the way infrastructure tooling splits. The runtime that actually executes your workload is one layer. The framework you write to define that workload is another. Strands is the framework you write. AgentCore, which shows up in week 4, is closer to the managed runtime and operational plumbing that hosts and scales what you built. You author with Strands. You deploy and run at scale with AgentCore.
+Here's the mental model, and this one I can back with AWS's own words. Think of it the way infrastructure tooling splits. The runtime that executes your workload is one layer. The framework you write to define that workload is another. Strands is the framework you write. AgentCore is the managed runtime that hosts and scales it. The [AgentCore FAQ](https://aws.amazon.com/bedrock/agentcore/faqs/) says it directly: AgentCore Runtime deploys and scales agents built with "any open-source framework (such as CrewAI, LangGraph, LlamaIndex, Google ADK, OpenAI Agents SDK, or Strands Agents)." You author with Strands. You deploy and run at scale with AgentCore.
 
-<!-- VERIFY: the Strands-as-framework / AgentCore-as-runtime relationship is my inference from the roadmap ordering and product docs, not an official AWS statement. Confirm against AgentCore docs (https://aws.amazon.com/bedrock/agentcore/) or soften the claim before publishing. -->
+That split explains why the two names keep showing up together. You author with the framework, then deploy with the runtime. It also explains why "Strands vs. AgentCore" is the wrong question. They're not competing. One writes the agent, the other runs it at scale.
 
-The roadmap ordering backs this up, at least circumstantially. If Strands were just a thin wrapper over AgentCore, you would not teach it first. You teach the authoring layer before the deployment layer because you need something to deploy. That is why I read week 3 (Strands) coming before week 4 (AgentCore) as a signal, not an accident.
-
-[GRAPHIC: layered diagram | Nova/Bedrock models at the bottom, Strands SDK as the authoring layer in the middle, AgentCore as the managed runtime on top, with "you write this" pointing at Strands and "this runs it" pointing at AgentCore | the layers are complementary, not competing]
+![Layered diagram: Bedrock models at the bottom, Strands SDK as the authoring layer you write, AgentCore as the managed runtime that runs it](https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/strands-agents-aws/01-strands-agentcore-layers.png)
+*The split that makes "Strands vs. AgentCore" the wrong question: you write one, the other runs it.*
 
 ---
 
@@ -102,11 +91,9 @@ export AWS_PROFILE=your-profile
 export AWS_REGION=us-east-1
 ```
 
-<!-- VERIFY: confirm exact package names on PyPI (strands-agents vs strands) and that Bedrock model access must be enabled in the console for the target region/model -->
+Here's a detail that will save you a confused hour: most tutorials still tell you to go enable model access in the Bedrock console first. That advice is stale. Since [October 2025](https://aws.amazon.com/about-aws/whats-new/2025/10/amazon-bedrock-automatic-enablement-serverless-foundation-models/), Bedrock enables serverless foundation models automatically in every commercial region. The manual "Model access" page is gone. The one exception: Anthropic models still ask for a one-time usage form before first use. Nova models need nothing. If a guide sends you hunting for a console page that no longer exists, that's the guide's age showing, not your mistake.
 
-The one thing that will bite you here has nothing to do with Strands and everything to do with Bedrock. If you have never turned on model access for your account, your first agent call fails with an access error, not a code error. You request model access in the Bedrock console per region, per model. I've watched people burn an hour debugging their Python when the fix was three clicks in the console. Check that first.
-
-Once credentials and model access are sorted, pointing the agent at a specific model is explicit:
+With credentials sorted, pointing the agent at a specific model is explicit:
 
 ```python
 from strands import Agent
@@ -118,7 +105,7 @@ from strands.models import BedrockModel
 # but costs more. For an agent that loops and calls tools many times
 # per task, that per-call cost multiplies fast.
 model = BedrockModel(
-    model_id="amazon.nova-pro-v1:0",
+    model_id="us.amazon.nova-pro-v1:0",  # US cross-region inference profile
     temperature=0.3,  # lower temp: more deterministic tool selection,
                       # which is usually what you want for agents that act
 )
@@ -126,11 +113,9 @@ model = BedrockModel(
 agent = Agent(model=model, tools=[get_invoice_total])
 ```
 
-<!-- VERIFY: confirm the BedrockModel import path, the exact Nova Pro model_id string, and current relative pricing of Nova Pro vs Claude models on Bedrock before stating cost claims -->
-
 That `temperature=0.3` is a deliberate choice worth explaining. For a chatbot you might want warmth and variety, so you run it hot. For an agent that picks tools and takes actions, you want it boring and repeatable. High temperature means the model might improvise a different tool sequence run to run, and non-determinism in something that touches your systems is a debugging nightmare. Lower temperature, more predictable actions.
 
-The Nova Pro choice in week 4 of the roadmap is the same kind of decision made at the model layer. Nova is AWS's own model family, and it tends to cost less per token than the premium models. When your agent loops, plans, calls a tool, reads the result, and plans again, you pay for every hop. A model that's marginally smarter but several times more expensive can quietly turn a cheap task into a real bill. Pairing Strands with Nova reads as an intentional cost posture, not just AWS promoting its own model.
+Pairing Strands with Nova Pro is the same kind of decision made at the model layer. Nova is AWS's own model family, and it tends to cost less per token than the premium models. When your agent loops, plans, calls a tool, reads the result, and plans again, you pay for every hop. A model that's marginally smarter but several times more expensive can quietly turn a cheap task into a real bill. Running the agent on Nova reads as an intentional cost posture, not just AWS promoting its own model.
 
 ---
 
@@ -140,19 +125,19 @@ I don't want to write the breathless "this changes everything" piece, because th
 
 Model-driven control flow is elegant right up until you need to know *why* the agent did something. When the model owns the plan, your debugging surface changes. You are no longer reading a state machine. You are reading a transcript of what the model decided, and asking why it decided that. That's a real trade-off, and the docs are understandably optimistic about it. I'd want to see observability and tracing in a genuine multi-tool workload before I trusted it with anything that spends money or mutates data.
 
-The other open question is production evidence. I went looking for companies running Strands in production and came up mostly empty. That's not damning. It's a young framework. But it means anyone adopting it right now is early, and being early cuts both ways. You get the clean search-traffic runway and the AWS-notices-its-own-framework upside. You also get to be the one who finds the sharp edges first.
+The other open question is what kind of production evidence exists. There's plenty of it now, and that's the good news. Smartsheet presented a Strands session at re:Invent 2025 (BIZ210). Cox Automotive runs 17 production agents on it. Jit, Landchecker, and Verisk show up in [AWS's own writeup](https://aws.amazon.com/blogs/machine-learning/enabling-customers-to-deliver-production-ready-ai-agents-at-scale/) on delivering production agents at scale. And AWS runs Kiro, Amazon Q, and Glue on it, which is about as strong a bet as a vendor can place on its own tooling.
 
-<!-- VERIFY: check for any published production case studies or notable adopters of Strands before publishing; if found, cite them; if not, the "mostly empty" claim stands -->
+Here's the caveat I'd keep front and center. Almost all of that evidence is AWS-authored. It's the vendor telling you its framework works, which is exactly what a vendor does. The independent post-mortem, the "we picked Strands over LangGraph for these reasons and here's where it hurt," barely exists yet. Setup tutorials, yes. Marketing vignettes, yes. A neutral engineer walking through six months of running it in anger, no. So the coverage gap closed, but a depth gap opened in its place. Being early to that depth still cuts both ways. You get the clean runway. You also get to find the sharp edges first.
 
 ---
 
-## Why this is worth your attention now
+## Why this belongs in your evaluation
 
-Step back from the code for a second. The reason to care about Strands is not that it's objectively better than LangChain. I have not run that comparison honestly enough to claim it, and neither has most of the internet yet. The reason to care is the gap.
+Step back from the code for a second. The reason to put Strands on your shortlist isn't that it beats LangGraph. I haven't run that comparison honestly enough to claim it, and neither has most of the internet yet. That's the part worth sitting with.
 
-AWS assigns Strands enough weight to put it in week 3 of its flagship agent roadmap. The community has assigned it almost none. That gap is the whole story. It's the same gap that existed around every framework the year before it got crowded. Frameworks are consolidating fast in 2026, AutoGen already absorbed, LangChain under pressure, and the market clearly wants fewer, cloud-native options. A first-party AWS framework sitting in the official curriculum is a strong candidate to be one of the survivors.
+Frameworks are consolidating fast in 2026. AutoGen already got absorbed into Microsoft's Agent Framework. The market clearly wants fewer, cloud-native options. A first-party AWS framework with 25M downloads, a year of releases, and AWS running its own flagship products on it is a strong candidate to be one of the survivors. Leaving it out of a framework comparison because you hadn't heard of it a year ago is a decision you're making by accident.
 
-Documentation isn't overhead. It's thinking made visible. Right now the visible thinking about Strands is a docs site and a handful of GitHub examples. That's the messy middle, and the messy middle is where learning lives. Going through it in public, before the topic is picked clean, is the entire point of building to learn.
+Documentation isn't overhead. It's thinking made visible. Right now the thinking that's visible about Strands is AWS's own. Nobody outside the vendor has weighed it honestly against the frameworks everyone already benchmarks. That's the messy middle, and the messy middle is where learning lives.
 
 ---
 
@@ -162,10 +147,10 @@ If you have ten minutes: `pip install strands-agents`, run the calculator exampl
 
 If you have an afternoon: build one real tool for something you actually use, an internal API, a cost lookup, a status check, and see how far the docstring-as-interface idea carries you before it strains.
 
-If you have a weekend and you're following Prasad Rao's roadmap anyway: do week 3 properly, wire Strands to Nova Pro, and write down what surprised you. That article does not exist yet. You could be the one who writes it.
+If you have a weekend and you already run agents in production: put Strands next to LangGraph or CrewAI on a task you actually care about, and write down where each one hurt. That comparison is the missing artifact. Every framework roundup skips Strands, and every Strands writeup skips the comparison. Whoever publishes an honest head-to-head fills the one hole in the whole conversation.
 
 I'll be doing the same, in the open, wrong turns included. If you've already built something on Strands, or you think my framework-versus-runtime read of the AgentCore relationship is off, tell me in the comments. I'd rather be corrected early than confident and wrong. Build. Document. Share. Repeat.
 
 ---
 
-*Sources: [Prasad Rao's six-week AWS agents roadmap](https://www.linkedin.com/posts/kprasadrao_want-to-gain-deep-hands-on-experience-on-activity-7462182719771549698-24n9) (LinkedIn, May 2026, 693 reactions) · [Strands Agents documentation](https://strandsagents.com/) · [Strands Agents SDK on GitHub](https://github.com/strands-agents/sdk-python) · [Amazon Bedrock AgentCore](https://aws.amazon.com/bedrock/agentcore/) · [Amazon Nova](https://aws.amazon.com/ai/generative-ai/nova/)*
+*Sources: [Introducing Strands Agents, an open-source AI agents SDK](https://aws.amazon.com/blogs/opensource/introducing-strands-agents-an-open-source-ai-agents-sdk/) (AWS, names Kiro, Amazon Q, Glue, Transform for .NET) · [Enabling customers to deliver production-ready AI agents at scale](https://aws.amazon.com/blogs/machine-learning/enabling-customers-to-deliver-production-ready-ai-agents-at-scale/) (AWS ML Blog, named adopters) · [Strands Agents documentation](https://strandsagents.com/) · [Strands Agents SDK on GitHub](https://github.com/strands-agents/sdk-python) · [Amazon Bedrock AgentCore](https://aws.amazon.com/bedrock/agentcore/) · [Amazon Nova](https://aws.amazon.com/ai/generative-ai/nova/)*
