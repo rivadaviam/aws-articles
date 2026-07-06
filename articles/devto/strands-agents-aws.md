@@ -72,7 +72,7 @@ Here's the mental model, and this one I can back with AWS's own words. Think of 
 
 That split explains why the two names keep showing up together. You author with the framework, then deploy with the runtime. It also explains why "Strands vs. AgentCore" is the wrong question. They're not competing. One writes the agent, the other runs it at scale.
 
-![Layered diagram: Bedrock models at the bottom, Strands SDK as the authoring layer you write, AgentCore as the managed runtime that runs it](https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/strands-agents-aws/01-strands-agentcore-layers.png)
+![Layered diagram: Bedrock models at the bottom, Strands SDK as the authoring layer you write, AgentCore as the managed runtime that runs it](https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/strands-agents-aws/01-strands-agentcore-layers.png?v=2)
 *The split that makes "Strands vs. AgentCore" the wrong question: you write one, the other runs it.*
 
 ---
