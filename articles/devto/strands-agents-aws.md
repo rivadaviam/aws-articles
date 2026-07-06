@@ -13,7 +13,7 @@ That's odd, because Strands is the framework AWS trusts with its own products. K
 
 So the gap isn't coverage anymore. A year ago you could barely find a tutorial. Now there's a Medium series, an InfoQ writeup, YouTube playlists, the works. The gap moved. It's an *evaluation* gap. Everyone benchmarks LangGraph against CrewAI and quietly leaves out the framework AWS runs Kiro on. If you're picking an agent framework on AWS and Strands isn't even on your shortlist, that's worth a second look.
 
-Full disclosure before we go further. I have not shipped a production system on Strands. I read the documentation, poked at the SDK, and pulled together what the adopter evidence actually shows so you don't start from a blank page. When I'm guessing, I'll say so.
+Full disclosure before we go further. I have not shipped a production system on Strands. I have run every code example in this article against Bedrock Nova (they work as printed; 2-3 seconds per agent call, under a cent total), read the documentation, and pulled together what the adopter evidence actually shows so you don't start from a blank page. When I'm guessing, I'll say so.
 
 ---
 
