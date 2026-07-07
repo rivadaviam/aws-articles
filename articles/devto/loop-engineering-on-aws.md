@@ -3,7 +3,7 @@ title: "Loop Engineering on AWS: Stop Writing Prompts, Design the System That Wr
 published: false
 description: "Addy Osmani named the shift from prompter to loop architect. Here's each of his six components mapped to a real AWS service."
 tags: aws, aiagents, amazonbedrock, architecture
-cover_image: ""
+cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/loop-engineering-on-aws/00-cover.png"
 canonical_url: ""
 ---
 
@@ -29,7 +29,9 @@ The reason this is worth writing *now* is that the AWS side matured on almost th
 
 Here is the map I keep coming back to.
 
-[GRAPHIC: mapping table/diagram | Osmani's six loop components in the left column, the AWS service in the right, with the minimal loop wiring drawn underneath | "A loop is six services talking, not one agent thinking harder"]
+![Six loop components mapped to AWS services: Automations to EventBridge plus Lambda, Worktrees to CodeBuild/ECS tasks, Skills to Bedrock Knowledge Bases, Plugins (MCP) to AWS MCP Server, Sub-agents to Bedrock Agents, Memory files to S3 plus DynamoDB](https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/loop-engineering-on-aws/01-osmani-aws-map.png)
+
+*Osmani's six loop components on the left, the AWS service each one lives on when you run it in production on the right.*
 
 | Component (Osmani) | What it does | AWS service | Key config |
 |---|---|---|---|

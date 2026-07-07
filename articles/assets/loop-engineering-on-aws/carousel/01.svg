@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="1080" height="1350" fill="#1E2A38"/>
+
+  <text x="1000" y="110" text-anchor="end" font-family="SF Mono, Menlo, Monaco, monospace" font-size="34" fill="#8FA3B8">1/9</text>
+
+  <rect x="80" y="330" width="120" height="14" fill="#FF9900"/>
+
+  <!-- headline -->
+  <text x="80" y="470" font-size="84" font-weight="700" fill="#F5F7FA">Stop writing</text>
+  <text x="80" y="566" font-size="84" font-weight="700" fill="#F5F7FA">prompts.</text>
+
+  <text x="80" y="740" font-size="72" font-weight="700" fill="#FF9900">Design the system</text>
+  <text x="80" y="822" font-size="72" font-weight="700" fill="#FF9900">that writes them.</text>
+
+  <!-- sub -->
+  <text x="80" y="1010" font-size="40" fill="#8FA3B8">Addy Osmani's loop engineering,</text>
+  <text x="80" y="1066" font-size="40" fill="#8FA3B8">mapped to AWS — 6 components</text>
+
+  <text x="80" y="1300" font-size="24" fill="#8FA3B8">Build. Document. Share. Repeat.</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="1000" height="420" fill="#1E2A38"/>
+
+  <!-- big background number: 6 agents, as design element -->
+  <text x="965" y="345" fill="#FF9900" opacity="0.16" font-size="200" font-weight="700" text-anchor="end" font-family="SF Mono, Menlo, Monaco, monospace">6</text>
+
+  <!-- orange accent bar -->
+  <rect x="70" y="120" width="8" height="180" fill="#FF9900"/>
+
+  <!-- title: 3 lines, each well under the char budget -->
+  <text x="102" y="158" fill="#F5F7FA" font-size="44" font-weight="700">Garry Tan's 6-agent team,</text>
+  <text x="102" y="210" fill="#F5F7FA" font-size="44" font-weight="700">rebuilt on AWS Bedrock</text>
+  <text x="102" y="262" fill="#8FA3B8" font-size="28">When the 30-second install is worth hours</text>
+
+  <!-- series chip -->
+  <text x="102" y="308" fill="#FF9900" font-size="24" font-weight="700">AWS GenAI · Build-to-Learn · 2026</text>
+
+  <!-- logo mark -->
+  <text x="940" y="388" fill="#8FA3B8" font-size="22" text-anchor="end">Build-to-Learn</text>
+</svg>

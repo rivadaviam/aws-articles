@@ -3,7 +3,7 @@ title: "The CEO of Y Combinator Open-Sourced a 6-Agent Team. What Happens When Y
 published: false
 description: "gstack installs in 30 seconds on your laptop. The same pattern on Bedrock takes hours and adds IAM, CloudTrail, and billing. Here's when that trade is worth it."
 tags: aws, aiagents, amazonbedrock, learninpublic
-cover_image: ""
+cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/gstack-on-bedrock-multiagent/00-cover.png"
 canonical_url: ""
 ---
 
@@ -48,7 +48,9 @@ Here's how the four well-documented gstack roles line up.
 
 Forget the specific service names for a second. What the table really shows is a shift in what "a role" means. On your laptop, the CEO agent is a system prompt. On Bedrock, that same agent is a system prompt plus a guardrail policy plus an IAM role that literally cannot touch your deploy pipeline. The role stops being a suggestion. It becomes an enforced boundary.
 
-[GRAPHIC: architecture diagram | orchestrator agent routing to CEO / Engineering Manager / Designer / Release Manager sub-agents, with CloudTrail, CloudWatch, and IAM as a cross-cutting layer underneath | "the same six roles, now with an audit floor under them"]
+![Bedrock orchestrator agent routing to CEO, Engineering Manager, Designer, and Release Manager sub-agents, with a CloudTrail, CloudWatch, and IAM audit floor underneath](https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/gstack-on-bedrock-multiagent/01-orchestrator-architecture.png)
+
+*The orchestrator routes to each specialized sub-agent, and every one of them runs on top of the same audit floor: CloudTrail for decisions, CloudWatch for metrics, IAM for least-privilege access.*
 
 ---
 
@@ -112,7 +114,9 @@ If you're a solo developer or a two-person startup, almost certainly not. The au
 
 If you're a team of five or more engineers, or anyone with a compliance obligation, the math flips. The moment "which agent approved this deploy" becomes a question a real human has to answer, CloudTrail stops being overhead and starts being the cheapest insurance you own. The moment two developers run the pattern at once, shared IAM and centralized billing stop being bureaucracy and start being the thing that keeps the wheels on.
 
-[GRAPHIC: comparison chart | two columns, "Solo / early startup" vs. "Team of 5+ / compliance", scoring audit, access control, billing, and scale as "overhead" or "insurance" | "the same six agents, two completely different answers"]
+![Two-column comparison: for a solo developer or early startup, Bedrock's audit, access control, billing, and scale features are overhead; for a team of five or more with compliance needs, the same features are insurance](https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/gstack-on-bedrock-multiagent/02-solo-vs-team.png)
+
+*Same six agents, same four dimensions. On the left they read as overhead; on the right, as insurance. The scale is what flips the answer.*
 
 The dishonest version of this article sells Bedrock as the universal upgrade. It isn't. It's the right tool at a specific scale, and naming that scale out loud is more useful than another "why you should migrate everything" post.
 
