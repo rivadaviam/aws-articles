@@ -1,6 +1,6 @@
 ---
 title: "AWS Runs Kiro and Amazon Q on Strands. Why Isn't It in Your Stack Evaluation?"
-published: false
+published: true
 description: "25M downloads. Cox Automotive runs 17 agents on it. AWS ships its own products on it. So why does every framework comparison skip Strands?"
 tags: aws, aiagents, generativeai, learninpublic
 cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/strands-agents-aws/00-cover.png"
