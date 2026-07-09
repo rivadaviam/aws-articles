@@ -37,7 +37,7 @@ And the big one. Observability and governance stopped being layers. They became 
 
 ## The map: every layer, and the AWS service that covers it
 
-Here's the core of it. The classic horizontal layers of the stack, each with the AWS service I'd reach for.
+Start with the core of it: the classic horizontal layers of the stack, each with the AWS service I'd reach for.
 
 [GRAPHIC: architecture diagram | The 2026 production AI stack as horizontal layers (Model, Orchestration, MCP, Memory, RAG, Gateway, Prompt Mgmt, Eval, Guardrails) with two vertical rails — Observability and Governance — running through all of them, each node labeled with its AWS service | The stack stopped growing taller; the rails now run top to bottom.]
 
@@ -110,7 +110,7 @@ The other useful thing a stack map does is tell you where not to spend your time
 
 ## What I'd double-check before trusting this map
 
-The whole value here is curation you can trust, so here's where I'd want a test before betting a production decision on my own mapping.
+The whole value here is curation you can trust, so this is where I'd want a test before betting a production decision on my own mapping.
 
 I'd confirm the AgentCore Evaluations and AgentCore Policy GA claims against the AWS console, not just the launch posts, because "GA" and "GA in your region with the quota you need" are different facts, and I've been burned by that gap before. I'd verify the CISA KEV specifics, as flagged above. And I'd treat the framework-consolidation calls as a snapshot with a six-month shelf life. This map gets redrawn in November. Some of what looks settled in May won't be.
 

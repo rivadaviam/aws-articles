@@ -72,7 +72,7 @@ The mapping isn't forced. Bedrock Prompt Management was designed around versioni
 
 ## The deployment flow, end to end
 
-Here's what a prompt change looks like when the prompt is a real artifact instead of a string.
+A prompt change looks completely different once the prompt is a real artifact instead of a string.
 
 A developer writes a new version of the prompt in Bedrock Prompt Management. It becomes version N, immutable, sitting next to versions 1 through N-1. Nothing in production has moved yet.
 
@@ -117,7 +117,7 @@ A team with one agent and two prompts does not need any of this. You can hold tw
 
 The math changes fast. Ten agents, fifty prompts, three environments, and a couple of engineers who each "improve" prompts on their own schedule. Now the hand-managed approach stops being merely annoying and becomes the thing that breaks production at 2 a.m. with no audit trail to explain it. SPDD is an answer to operational scale, and Bedrock Prompt Management is the operational tool. Neither is worth the weight until the weight is worth carrying.
 
-There's a tell that you've crossed the line: the first time someone asks "when did this prompt change?" and the honest answer is "no idea." That's the signal. That's when a string in a function became technical debt, in exactly the sense Fowler has written about for twenty years.
+One tell that you've crossed the line: the first time someone asks "when did this prompt change?" and the honest answer is "no idea." That's the signal. That's when a string in a function became technical debt, in exactly the sense Fowler has written about for twenty years.
 
 [GRAPHIC: comparison chart | hardcoded-string workflow vs. Bedrock-managed workflow across five rows — where the prompt lives, how it changes, rollback path, audit trail, review process | "Same prompt. One is an artifact, one is a liability."]
 

@@ -1,7 +1,7 @@
 ---
 title: "From Demo to Production: What GA Actually Means for AWS AI Agents"
 published: true
-description: "My $363 Bedrock bill taught me to ask about cost before the invoice. Here's what changes when agents run 24/7 and the meter never stops."
+description: "My $363 Bedrock bill taught me to ask about cost before the invoice. Everything changes once agents run 24/7 and the meter never stops."
 tags: aws, amazonbedrock, aiagents, generativeai
 cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/from-demo-to-production-aws-agent-stack/00-cover.png"
 canonical_url: ""
@@ -19,13 +19,13 @@ So let me look at what "GA" actually means this year, using the specifics AWS pu
 
 ## The pitch changed from "try this model" to "put agents to work"
 
-At re:Invent 2025, the framing shifted. AWS stopped leading with "here's a better model" and started leading with agents that operate as an extension of your team: Kiro, a Security Agent, a DevOps Agent, described as "frontier agents" that work for hours or days at a time ([About Amazon](https://www.aboutamazon.com/news/aws/aws-re-invent-2025-ai-news-updates)).
+At re:Invent 2025, the framing shifted. AWS stopped leading with "try this better model" and started leading with agents that operate as an extension of your team: Kiro, a Security Agent, a DevOps Agent, described as "frontier agents" that work for hours or days at a time ([About Amazon](https://www.aboutamazon.com/news/aws/aws-re-invent-2025-ai-news-updates)).
 
 That's a bigger claim than it sounds. A model call returns in seconds and you eyeball the result. An agent that runs for a day makes hundreds of decisions you never see, spends tokens you didn't budget line-by-line, and holds sessions open while it works. The moment an agent runs unattended, every question I learned to ask the hard way stops being optional. What does this cost? What are the limits? How do I know it's behaving?
 
 The model catalog exploded in parallel. Bedrock went from roughly 60 to nearly 100 models, adding Mistral, Google, NVIDIA, OpenAI, MiniMax, Moonshot, and Qwen ([AWS News Blog](https://aws.amazon.com/blogs/aws/)). That includes GPT-5.5, GPT-5.4, and Codex running on Bedrock ([About Amazon](https://www.aboutamazon.com/news/aws/bedrock-openai-models)). Amazon's own Nova 2 line went multimodal end to end. Nova 2 Omni handles text, image, video, and voice, and Nova 2 Sonic does speech-to-speech ([AWS re:Invent 2025 top announcements](https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/)).
 
-Here's what the model count doesn't tell you: none of it matters if you can't operate the thing safely. Which is why the announcements I actually care about aren't models at all.
+The model count hides the real question. None of it matters if you can't operate the thing safely, which is why the announcements I actually care about aren't models at all.
 
 ---
 
@@ -64,7 +64,7 @@ This is where my near-miss from an earlier lab keeps echoing. In lab-01, my firs
 
 The cost picture is where I have to be honest with you, because the seed I built this from raised a question I can't fully answer yet: **what does an AgentCore agent actually cost in production versus a hand-rolled Lambda plus Bedrock call?** I don't have a real bill to show you. Anyone who hands you a confident number right now is guessing. What I *can* tell you is which meters are running: model tokens, session time, tool invocations, and any egress. The managed convenience of the harness is not free. If you take one thing from my Knowledge Base story: find the meters before you find the bill.
 
-There's a data-residency angle worth flagging too. AgentCore's Web Search runs with zero data egress from your AWS environment ([AWS ML Blog](https://aws.amazon.com/blogs/machine-learning/new-in-amazon-bedrock-agentcore-build-agents-with-broader-knowledge-and-continuous-learning/)), which matters if you're in a regulated shop and "the agent googled it" is not an acceptable data path.
+One data-residency angle is worth flagging too. AgentCore's Web Search runs with zero data egress from your AWS environment ([AWS ML Blog](https://aws.amazon.com/blogs/machine-learning/new-in-amazon-bedrock-agentcore-build-agents-with-broader-knowledge-and-continuous-learning/)), which matters if you're in a regulated shop and "the agent googled it" is not an acceptable data path.
 
 ---
 

@@ -23,7 +23,7 @@ That's the gap this article fills. Six components, six concrete services, one mi
 
 ## The six components, and why the timing is not an accident
 
-Osmani breaks a loop into six parts: automations, worktrees, skills, plugins (MCP), sub-agents, and memory files. Read that list as an architecture, not a feature tour. Each part answers a different question. What triggers the work. Where the work runs in isolation. What the agent knows. How it reaches tools. Who does the specialized labor. And what it remembers between runs.
+Osmani breaks a loop into six parts: automations, worktrees, skills, plugins (MCP), sub-agents, and memory files. Read that list as an architecture. Each part answers a different question. What triggers the work. Where the work runs in isolation. What the agent knows. How it reaches tools. Who does the specialized labor. And what it remembers between runs.
 
 The reason this is worth writing *now* is that the AWS side matured on almost the same calendar as Osmani's post. AWS MCP Server hit GA in May 2026. AgentCore Policy went GA in March, AgentCore Evaluations the same month, and the AgentCore harness reached GA in June 2026 (<!-- VERIFY: confirm AgentCore harness GA date; seed cites 2026-06 AWS What's New -->). Two threads, the mental model and the infrastructure, arrived at the same knot in the same month.
 

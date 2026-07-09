@@ -1,7 +1,7 @@
 ---
-title: "You're Stuck at Level 6 of the AI Maturity Pyramid. Here's the AWS Map Out."
+title: "You're Stuck at Level 6 of the AI Maturity Pyramid. The AWS Map Out."
 published: false
-description: "Copilot, ChatGPT, Claude in every workflow feels advanced. It's the most common plateau in AI adoption. Here's where AWS services actually move you up."
+description: "Copilot, ChatGPT, Claude in every workflow feels advanced. It's the most common plateau in AI adoption. This is where AWS services actually move you up."
 tags: aws, ai, architecture, strategy
 cover_image: ""
 canonical_url: ""
@@ -13,7 +13,7 @@ You might also be stuck, and not know it.
 
 That's the uncomfortable read I got from Jonny Tooze's AI maturity pyramid, a 12-level model he posted in April 2026. Tooze runs ENDGAME and has a big following in the organizational-AI conversation, so the framework spread fast. The diagram is clean. But the diagram isn't what stuck with me. It was his claim that most enterprises plateau early, in the band where AI writes content, writes code, and answers questions, while a human stays in the loop for every decision. <!-- VERIFY: Tooze's exact wording is "most enterprises plateau at Level 2 AI (basic productivity)" per the LinkedIn source; the seed maps this to the generative "Level 4-6" band. Confirm the level-numbering before publish. -->
 
-The pyramid is a good framework. What it doesn't give you is the part I care about as someone who builds on AWS: which service actually takes you from one floor to the next, and whether the climb is worth it. So I went looking for that map. Here's what I found, including where it gets expensive and where I'd want to run a test before believing my own advice.
+The pyramid is a good framework. What it doesn't give you is the part I care about as someone who builds on AWS: which service actually takes you from one floor to the next, and whether the climb is worth it. So I went looking for that map. What I found includes where it gets expensive and where I'd want to run a test before believing my own advice.
 
 ---
 
@@ -41,7 +41,7 @@ In the generative block, AI makes your people faster. A dev ships a function in 
 
 That dependency is invisible on a dashboard. Adoption goes up. Everyone is using the tools. Nobody notices that the shape of the work didn't change, only its speed.
 
-Tooze names the shift that breaks the plateau in one line: *stop optimizing speed, start replacing manual work entirely.* <!-- VERIFY: exact quote attribution to Tooze's April 2026 LinkedIn post. --> That shift doesn't come from a bigger model or a better prompt. It comes from a design decision you make at the start. At level 6 you use AI to go faster on a task. At level 7 you remove the task. Here's the detail that surprised me: the AWS service can be identical on both sides. Bedrock powers a chat assistant and an agent alike. What changes is the contract with the human. In the generative block the human closes the loop. In the agent block the agent closes it, and the human sets the goal instead of the steps.
+Tooze names the shift that breaks the plateau in one line: *stop optimizing speed, start replacing manual work entirely.* <!-- VERIFY: exact quote attribution to Tooze's April 2026 LinkedIn post. --> That shift doesn't come from a bigger model or a better prompt. It comes from a design decision you make at the start. At level 6 you use AI to go faster on a task. At level 7 you remove the task. The detail that surprised me is that the AWS service can be identical on both sides. Bedrock powers a chat assistant and an agent alike. What changes is the contract with the human. In the generative block the human closes the loop. In the agent block the agent closes it, and the human sets the goal instead of the steps.
 
 If your AI initiatives all take the form "the human does X faster," you're at 6. If any of them take the form "X happens without a human touching it," you've started the climb.
 
@@ -98,6 +98,6 @@ If I were placing my own team on this pyramid today, I'd do three things. I'd fi
 
 The questions I can't answer yet are the useful ones. What does a minimum production agent actually cost per month on Bedrock? Is there a real AWS customer operating at level 9 or above that we can learn from? Does Tooze's maturity model line up with the AWS Well-Architected guidance for AI workloads, or do they disagree in ways worth knowing? I'd rather leave those open and honest than fill them with a confident guess.
 
-If you want to check your own team against this map, here's the tiered invite. Low effort: run the one-question test above and tell me in the comments what level it puts you at. I'm curious how many land on 6. Medium effort: if you've built a Bedrock agent in production, share what it cost you to run, because that's the data gap this whole space has. High effort: if you can point at a public AWS case study operating at the autonomous levels, drop the link. I'll update this piece and credit you.
+If you want to check your own team against this map, pick your tier. Low effort: run the one-question test above and tell me in the comments what level it puts you at. I'm curious how many land on 6. Medium effort: if you've built a Bedrock agent in production, share what it cost you to run, because that's the data gap this whole space has. High effort: if you can point at a public AWS case study operating at the autonomous levels, drop the link. I'll update this piece and credit you.
 
 Build. Document. Share. Repeat. The map is only as good as the tests we run against it, so let's run some.

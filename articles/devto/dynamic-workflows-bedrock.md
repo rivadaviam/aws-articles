@@ -19,7 +19,7 @@ That's the whole article. I want to be honest up front about where the ground is
 
 ## The difference between improvising and programming
 
-Here's the distinction that reframed how I think about agents.
+One distinction reframed how I think about agents.
 
 An agent that improvises takes a prompt, generates an ad-hoc answer, and finishes. The knowledge lives in that one exchange. Ask again tomorrow and it does the reasoning over from the start, with no memory that it ever solved this before.
 
@@ -66,7 +66,7 @@ Claude Code (v2.1.154+, via Bedrock)
 
 Follow that chain and something clicks. What started as a Claude Code session ended up as a piece of production infrastructure that runs without you in the loop. The agent's reasoning got frozen into a deployable artifact.
 
-Here's a sketch of what the wrapping looks like. The agent hands you the workflow logic. You wrap it in a handler and give it a schedule.
+The wrapping looks like this. The agent hands you the workflow logic. You wrap it in a handler and give it a schedule.
 
 ```python
 # lambda_function.py

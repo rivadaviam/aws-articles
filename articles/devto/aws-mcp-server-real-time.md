@@ -19,7 +19,7 @@ The AWS MCP Server reached general availability in May 2026, and most of the cov
 
 ## The gap that actually matters
 
-Here's the failure mode that got my attention. An agent working from training data doesn't know what it doesn't know. It interpolates. And AWS is one of the fastest-moving surfaces in the industry, so the interpolation goes stale in specific, expensive ways.
+One failure mode got my attention. An agent working from training data doesn't know what it doesn't know. It interpolates. And AWS is one of the fastest-moving surfaces in the industry, so the interpolation goes stale in specific, expensive ways.
 
 A few concrete ones, any of them plausible in a given week:
 

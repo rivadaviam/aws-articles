@@ -11,7 +11,7 @@ Open any "which agent framework should I use" post from the last six months. You
 
 That's odd, because Strands is the framework AWS trusts with its own products. Kiro runs on it. So do Amazon Q, AWS Glue, and AWS Transform for .NET ([AWS's own announcement](https://aws.amazon.com/blogs/opensource/introducing-strands-agents-an-open-source-ai-agents-sdk/) names them). It crossed [25 million downloads](https://aws.amazon.com/blogs/opensource/) by its one-year anniversary in May 2026, hit v1.7.0 on June 25, and sits at 6.4k GitHub stars. Cox Automotive runs 17 production agents on it. This is not a science project.
 
-So the gap isn't coverage anymore. A year ago you could barely find a tutorial. Now there's a Medium series, an InfoQ writeup, YouTube playlists, the works. The gap moved. It's an *evaluation* gap. Everyone benchmarks LangGraph against CrewAI and quietly leaves out the framework AWS runs Kiro on. If you're picking an agent framework on AWS and Strands isn't even on your shortlist, that's worth a second look.
+So the gap isn't coverage anymore. A year ago you could barely find a tutorial. Now a Medium series, an InfoQ writeup, and YouTube playlists all exist. The gap moved. It's an *evaluation* gap. Everyone benchmarks LangGraph against CrewAI and quietly leaves out the framework AWS runs Kiro on. If you're picking an agent framework on AWS and Strands isn't even on your shortlist, that's worth a second look.
 
 Full disclosure before we go further. I have not shipped a production system on Strands. I have run every code example in this article against Bedrock Nova (they work as printed; 2-3 seconds per agent call, under a cent total), read the documentation, and pulled together what the adopter evidence actually shows so you don't start from a blank page. When I'm guessing, I'll say so.
 
@@ -91,7 +91,7 @@ export AWS_PROFILE=your-profile
 export AWS_REGION=us-east-1
 ```
 
-Here's a detail that will save you a confused hour: most tutorials still tell you to go enable model access in the Bedrock console first. That advice is stale. Since [October 2025](https://aws.amazon.com/about-aws/whats-new/2025/10/amazon-bedrock-automatic-enablement-serverless-foundation-models/), Bedrock enables serverless foundation models automatically in every commercial region. The manual "Model access" page is gone. The one exception: Anthropic models still ask for a one-time usage form before first use. Nova models need nothing. If a guide sends you hunting for a console page that no longer exists, that's the guide's age showing, not your mistake.
+One detail will save you a confused hour. Most tutorials still tell you to go enable model access in the Bedrock console first. That advice is stale. Since [October 2025](https://aws.amazon.com/about-aws/whats-new/2025/10/amazon-bedrock-automatic-enablement-serverless-foundation-models/), Bedrock enables serverless foundation models automatically in every commercial region. The manual "Model access" page is gone. The one exception: Anthropic models still ask for a one-time usage form before first use. Nova models need nothing. If a guide sends you hunting for a console page that no longer exists, that's the guide's age showing, not your mistake.
 
 With credentials sorted, pointing the agent at a specific model is explicit:
 
@@ -121,13 +121,13 @@ Pairing Strands with Nova Pro is the same kind of decision made at the model lay
 
 ## Where I got skeptical
 
-I don't want to write the breathless "this changes everything" piece, because that's exactly the content this topic doesn't need. So here's my honest doubt.
+I don't want to write the breathless "this changes everything" piece, because that's exactly the content this topic doesn't need. So let me lay out my honest doubt.
 
 Model-driven control flow is elegant right up until you need to know *why* the agent did something. When the model owns the plan, your debugging surface changes. You are no longer reading a state machine. You are reading a transcript of what the model decided, and asking why it decided that. That's a real trade-off, and the docs are understandably optimistic about it. I'd want to see observability and tracing in a genuine multi-tool workload before I trusted it with anything that spends money or mutates data.
 
 The other open question is what kind of production evidence exists. There's plenty of it now, and that's the good news. Smartsheet presented a Strands session at re:Invent 2025 (BIZ210). Cox Automotive runs 17 production agents on it. Jit, Landchecker, and Verisk show up in [AWS's own writeup](https://aws.amazon.com/blogs/machine-learning/enabling-customers-to-deliver-production-ready-ai-agents-at-scale/) on delivering production agents at scale. And AWS runs Kiro, Amazon Q, and Glue on it, which is about as strong a bet as a vendor can place on its own tooling.
 
-Here's the caveat I'd keep front and center. Almost all of that evidence is AWS-authored. It's the vendor telling you its framework works, which is exactly what a vendor does. The independent post-mortem, the "we picked Strands over LangGraph for these reasons and here's where it hurt," barely exists yet. Setup tutorials, yes. Marketing vignettes, yes. A neutral engineer walking through six months of running it in anger, no. So the coverage gap closed, but a depth gap opened in its place. Being early to that depth still cuts both ways. You get the clean runway. You also get to find the sharp edges first.
+One caveat belongs front and center. Almost all of that evidence is AWS-authored. It's the vendor telling you its framework works, which is exactly what a vendor does. The independent post-mortem, the "we picked Strands over LangGraph for these reasons and this is where it hurt," barely exists yet. Setup tutorials, yes. Marketing vignettes, yes. A neutral engineer walking through six months of running it in anger, no. So the coverage gap closed, but a depth gap opened in its place. Being early to that depth still cuts both ways. You get the clean runway. You also get to find the sharp edges first.
 
 ---
 

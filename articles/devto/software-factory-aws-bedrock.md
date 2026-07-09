@@ -21,9 +21,9 @@ One thing up front. I'm not critiquing the freeCodeCamp model. I'm extending it.
 
 ## The five layers, mapped to real services
 
-Start with the layer map, because everything else hangs off it. Here's what each abstract layer becomes when you actually deploy it on AWS.
+Start with the layer map, because everything else hangs off it. Each abstract layer becomes something concrete once you actually deploy it on AWS.
 
-[GRAPHIC: architecture diagram | The 5 layers (Context, Knowledge, Agent, Workflow, Delivery) each labeled with its AWS service(s), arrows showing data flow top to bottom | "Every layer has a home on AWS — here's which service lives where."]
+[GRAPHIC: architecture diagram | The 5 layers (Context, Knowledge, Agent, Workflow, Delivery) each labeled with its AWS service(s), arrows showing data flow top to bottom | "Every layer has a home on AWS. This is which service lives where."]
 
 The **Context layer** holds project information, history, and current state. That splits into two AWS homes, not one. Static, durable context (specs, prior decisions, the stuff that doesn't change mid-run) lives in S3. Session state, the working memory each agent reads and writes during a task, belongs in DynamoDB. Keep those separate. I'll come back to why, because collapsing them is one of the three mistakes.
 
@@ -35,7 +35,7 @@ The **Workflow layer** is the orchestrator, the thing that decides which agent r
 
 The **Delivery layer** pushes output to the user or the next system. API Gateway plus Lambda for synchronous responses, EventBridge for anything asynchronous. If a downstream system reacts to "architecture approved" or "tests passed" as an event, that's EventBridge. If a caller is waiting on a response, that's API Gateway.
 
-Here's the same map as a table, because a decision matrix reads better than a paragraph when you're implementing.
+The same map reads better as a table when you're implementing, so here it is as a decision matrix.
 
 | Layer | Function | AWS service | The design call |
 |---|---|---|---|
@@ -87,7 +87,7 @@ The catch, and I won't pretend otherwise, is that the hybrid costs you design ti
 
 The second mistake hides until your third agent, and then it explodes.
 
-Here's the tempting pattern. Agent one produces output. You take that output, stuff it into the prompt for agent two as a string. Agent two produces more. Now the prompt for agent three carries agent one's output *and* agent two's output, both as text. By the fourth handoff you're passing a wall of accumulated context that's expensive to send, easy to truncate, and impossible to query.
+The tempting pattern goes like this. Agent one produces output. You take that output, stuff it into the prompt for agent two as a string. Agent two produces more. Now the prompt for agent three carries agent one's output *and* agent two's output, both as text. By the fourth handoff you're passing a wall of accumulated context that's expensive to send, easy to truncate, and impossible to query.
 
 State passed as strings in prompts doesn't scale past a couple of agents. The fix is the DynamoDB session store from the Context layer. Every agent reads the current state and writes its contribution back, keyed by session. Agent three doesn't inherit a swelling prompt. It reads exactly the fields it needs from a shared table.
 
@@ -120,7 +120,7 @@ State Machine (per gate):
      SendTaskFailure → flow aborts cleanly
 ```
 
-The word that matters is *indefinitely*. Step Functions holds that paused state for you at no per-second compute cost, waiting for the token to come back. A human can approve in four minutes or four days. Nothing spins. Nothing polls. When `SendTaskSuccess` fires with the token, the machine picks up exactly where it left off. That's the entire difference between a gate that scales and a gate that quietly runs up a bill.
+The word that matters is *indefinitely*. Step Functions holds that paused state for you at no per-second compute cost, waiting for the token to come back. A human can approve in four minutes or four days, and nothing is spinning or polling in the meantime. When `SendTaskSuccess` fires with the token, the machine picks up exactly where it left off. That's the entire difference between a gate that scales and a gate that quietly runs up a bill.
 
 Wire all three gates the same way, each as a `.waitForTaskToken` step in the Step Functions spine from decision one. Now the deterministic backbone and the human control points are the same mechanism. That's not a coincidence. That's the design working.
 

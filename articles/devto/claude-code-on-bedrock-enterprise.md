@@ -1,7 +1,7 @@
 ---
 title: "How Claude Code Went From \"We Can't\" to \"When Do We Start\" (via AWS Bedrock)"
 published: false
-description: "Your security team already blocked Claude Code. Here's the AWS Bedrock path that turns four hard no's into approvals they'll actually sign."
+description: "Your security team already blocked Claude Code. The AWS Bedrock path turns four hard no's into approvals they'll actually sign."
 tags: aws, claude, security, devops
 cover_image: ""
 canonical_url: ""
@@ -35,7 +35,7 @@ That's the flip. Four no's become four yeses, and none of the yeses required any
 
 ## What Bedrock does NOT fix (the honest part)
 
-Here's what the announcement posts skip. Routing through Bedrock is a trade, and you pay for it.
+The announcement posts skip this part. Routing through Bedrock is a trade, and you pay for it.
 
 You pay in tokens. Bedrock's per-token pricing for Claude can run higher than the direct Anthropic API for the same model, and there's no Claude Pro flat rate hiding on the other side. <!-- VERIFY: confirm current Bedrock per-token rates vs. direct API at https://aws.amazon.com/bedrock/pricing/ before publishing --> If you're a solo developer comparing a $20/month Pro plan to metered Bedrock inference, Bedrock will usually lose on raw cost. That comparison is real, and if someone tells you Bedrock is free, they're selling.
 

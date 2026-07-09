@@ -25,7 +25,7 @@ This article is about that gap. What does gstack look like when you rebuild it o
 
 Let me be precise about what I'm porting. I'm not lifting Garry Tan's files onto AWS. gstack is written for Claude Code, and it belongs there. What travels is the idea: a small set of specialized agents, each with one job, coordinated so the output of one feeds the next.
 
-There's a useful frame going around for this. Someone mapped out five levels of Claude Code usage, roughly Prompt, Skill, Skill Chain, Agent, and Agent Team, with the payoff climbing at each step. Level five, the agent team, is where the big multiplier lives. gstack is a level-five artifact. It's a team, not a trick.
+There's a useful frame going around for this. Someone mapped out five levels of Claude Code usage, roughly Prompt, Skill, Skill Chain, Agent, and Agent Team, with the payoff climbing at each step. Level five, the agent team, is where the big multiplier lives. gstack is a level-five artifact. A team you can install.
 
 <!-- VERIFY: the "5 levels / payoff multiplier" claim comes from an Instagram post (@leadgenman) cited in the seed. Treat as a framing device, not a benchmark. Keep the language qualitative, no specific multiplier numbers stated as fact. -->
 
@@ -37,7 +37,7 @@ So the real question was never "how do I copy gstack." The question is: I like l
 
 Bedrock has a multi-agent collaboration model built for exactly this shape: one orchestrator agent that routes work to specialized sub-agents. That maps onto gstack's roles almost one to one. The interesting part is which AWS service backs each role, because that's where the local pattern gains its production teeth.
 
-Here's how the four well-documented gstack roles line up.
+The four well-documented gstack roles line up like this.
 
 | gstack role | What it does | AWS Bedrock equivalent |
 |---|---|---|
@@ -118,7 +118,7 @@ If you're a team of five or more engineers, or anyone with a compliance obligati
 
 *Same six agents, same four dimensions. On the left they read as overhead; on the right, as insurance. The scale is what flips the answer.*
 
-The dishonest version of this article sells Bedrock as the universal upgrade. It isn't. It's the right tool at a specific scale, and naming that scale out loud is more useful than another "why you should migrate everything" post.
+The dishonest version of this article sells Bedrock as the universal upgrade. That's not what it is. Bedrock earns its place at a specific scale, and naming that scale out loud is more useful than another "why you should migrate everything" post.
 
 ---
 
@@ -126,11 +126,11 @@ The dishonest version of this article sells Bedrock as the universal upgrade. It
 
 A few things I'd want to know before rebuilding this pattern, learned from running agent teams rather than from this specific port.
 
-The orchestrator is where your design lives or dies. gstack's magic is the handoff between roles, and on Bedrock that handoff is the orchestrator's routing logic. Get that wrong and you have six agents talking past each other instead of a pipeline. Spend your design budget there, not on the individual agents.
+The orchestrator is where your design lives or dies. gstack's magic is the handoff between roles, and on Bedrock that handoff is the orchestrator's routing logic. Get that wrong and you have six agents talking past each other. Spend your design budget there. The individual agents are the easy part.
 
-Guardrails are not a nice-to-have on the CEO agent, they're the entire point of it. The whole reason a "business validation" agent earns its slot is that it says no. If its guardrail is loose, it's a rubber stamp with a token bill attached.
+Guardrails on the CEO agent are the entire point of it. The whole reason a "business validation" agent earns its slot is that it says no. If its guardrail is loose, it's a rubber stamp with a token bill attached.
 
-And least privilege is the feature, not the tax. It's tempting to give every agent broad permissions to get things working, then tighten later. Later never comes. If you're going to pay the setup cost of Bedrock at all, the per-agent IAM boundary is the thing you're paying for. Don't skip it and keep the overhead.
+And least privilege is the feature you came for. It's tempting to give every agent broad permissions to get things working, then tighten later. Later never comes. If you're going to pay the setup cost of Bedrock at all, the per-agent IAM boundary is the thing you're paying for. Don't skip it and keep the overhead.
 
 Build. Document. Share. Repeat. This series was never here to tell you Bedrock wins. It's here to show the actual trade, so you can make the call for your own team, at your own scale.
 
