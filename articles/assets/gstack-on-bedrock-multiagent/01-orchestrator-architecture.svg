@@ -56,7 +56,7 @@
   <text x="82" y="578" fill="#8FA3B8" font-size="22">CloudTrail: every decision logged  ·  CloudWatch: latency + tokens  ·  IAM: one least-privilege role each</text>
 
   <!-- footer -->
-  <text x="60" y="640" fill="#8FA3B8" font-size="22">Pattern: Bedrock multi-agent collaboration applied to gstack</text>
+  <text x="60" y="640" fill="#8FA3B8" font-size="22">Pattern: multi-agent orchestration on Bedrock AgentCore, applied to gstack</text>
   <text x="60" y="666" fill="#8FA3B8" font-size="22">Build. Document. Share. Repeat.</text>
   <text x="1140" y="666" fill="#8FA3B8" font-size="22" text-anchor="end">Build-to-Learn</text>
 </svg>
