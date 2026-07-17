@@ -10,16 +10,16 @@
 
   <rect x="80" y="500" width="920" height="200" rx="8" fill="#2A3B4F"/>
   <text x="120" y="575" font-size="34" fill="#8FA3B8">AWS service</text>
-  <text x="120" y="645" font-size="56" font-weight="700" fill="#FF9900">CodeBuild / ECS</text>
+  <text x="120" y="645" font-size="56" font-weight="700" fill="#FF9900">AgentCore Runtime</text>
 
-  <text x="80" y="810" font-size="42" fill="#F5F7FA">One container or task per agent.</text>
-  <text x="80" y="864" font-size="42" fill="#F5F7FA">Filesystem-isolated state, clean</text>
+  <text x="80" y="810" font-size="42" fill="#F5F7FA">One microVM per agent session,</text>
+  <text x="80" y="864" font-size="42" fill="#F5F7FA">its own /mnt/workspace, clean</text>
   <text x="80" y="918" font-size="42" fill="#F5F7FA">start, torn down after.</text>
 
   <text x="80" y="1020" font-size="42" fill="#F5F7FA">Shared mutable state is how you</text>
   <text x="80" y="1074" font-size="42" fill="#F5F7FA">get a mess you can't debug.</text>
 
-  <text x="80" y="1180" font-size="38" font-weight="700" fill="#8FA3B8">Isolation, mapped. Not git worktrees, cloned.</text>
+  <text x="80" y="1180" font-size="38" font-weight="700" fill="#8FA3B8">Isolation, upgraded. Not worktrees, cloned.</text>
 
   <text x="80" y="1300" font-size="24" fill="#8FA3B8">Build. Document. Share. Repeat.</text>
 </svg>

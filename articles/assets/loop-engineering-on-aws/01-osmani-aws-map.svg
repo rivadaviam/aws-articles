@@ -17,13 +17,13 @@
   <rect x="648" y="160" width="492" height="62" fill="#2A3B4F"/>
   <text x="672" y="199" fill="#F5F7FA" font-size="28" font-weight="700">EventBridge + Lambda</text>
 
-  <!-- Row 2: Worktrees -> CodeBuild / ECS -->
+  <!-- Row 2: Worktrees -> AgentCore Runtime microVMs -->
   <rect x="60" y="232" width="480" height="62" fill="#2A3B4F"/>
   <text x="84" y="271" fill="#F5F7FA" font-size="28" font-weight="700">Worktrees</text>
   <line x1="560" y1="263" x2="612" y2="263" stroke="#FF9900" stroke-width="4"/>
   <path d="M 612 255 L 628 263 L 612 271 Z" fill="#FF9900"/>
   <rect x="648" y="232" width="492" height="62" fill="#2A3B4F"/>
-  <text x="672" y="271" fill="#F5F7FA" font-size="28" font-weight="700">CodeBuild / ECS tasks</text>
+  <text x="672" y="271" fill="#F5F7FA" font-size="28" font-weight="700">AgentCore Runtime microVMs</text>
 
   <!-- Row 3: Skills -> Bedrock Knowledge Bases -->
   <rect x="60" y="304" width="480" height="62" fill="#2A3B4F"/>
@@ -42,13 +42,14 @@
   <text x="672" y="415" fill="#F5F7FA" font-size="28" font-weight="700">AWS MCP Server</text>
   <text x="1116" y="415" fill="#FF9900" font-size="22" font-weight="700" text-anchor="end">GA</text>
 
-  <!-- Row 5: Sub-agents -> Bedrock Agents -->
+  <!-- Row 5: Sub-agents -> AgentCore harness -->
   <rect x="60" y="448" width="480" height="62" fill="#2A3B4F"/>
   <text x="84" y="487" fill="#F5F7FA" font-size="28" font-weight="700">Sub-agents</text>
   <line x1="560" y1="479" x2="612" y2="479" stroke="#FF9900" stroke-width="4"/>
   <path d="M 612 471 L 628 479 L 612 487 Z" fill="#FF9900"/>
-  <rect x="648" y="448" width="492" height="62" fill="#2A3B4F"/>
-  <text x="672" y="487" fill="#F5F7FA" font-size="28" font-weight="700">Bedrock Agents</text>
+  <rect x="648" y="448" width="492" height="62" fill="#2A3B4F" stroke="#FF9900" stroke-width="3"/>
+  <text x="672" y="487" fill="#F5F7FA" font-size="28" font-weight="700">AgentCore harness</text>
+  <text x="1116" y="487" fill="#FF9900" font-size="22" font-weight="700" text-anchor="end">GA</text>
 
   <!-- Row 6: Memory files -> S3 + DynamoDB -->
   <rect x="60" y="520" width="480" height="62" fill="#2A3B4F"/>

@@ -10,7 +10,7 @@
 
   <rect x="80" y="500" width="920" height="200" rx="8" fill="#2A3B4F"/>
   <text x="120" y="575" font-size="34" fill="#8FA3B8">AWS service</text>
-  <text x="120" y="645" font-size="46" font-weight="700" fill="#FF9900">Bedrock multi-agent + AgentCore</text>
+  <text x="120" y="645" font-size="46" font-weight="700" fill="#FF9900">AgentCore harness</text>
 
   <text x="80" y="800" font-size="42" fill="#F5F7FA">An orchestrator routes work to</text>
   <text x="80" y="854" font-size="42" fill="#F5F7FA">specialist agents. AgentCore holds</text>
@@ -23,7 +23,8 @@
 
   <rect x="555" y="970" width="445" height="150" rx="8" fill="#2A3B4F"/>
   <text x="595" y="1035" font-size="52" font-weight="700" fill="#FF9900">5,000</text>
-  <text x="595" y="1085" font-size="32" fill="#8FA3B8">sessions per account</text>
+  <text x="595" y="1076" font-size="32" fill="#8FA3B8">sessions per account</text>
+  <text x="595" y="1110" font-size="22" fill="#8FA3B8">us-east-1/west-2 · half elsewhere</text>
 
   <text x="80" y="1210" font-size="38" font-weight="700" fill="#8FA3B8">Model the session ceiling first.</text>
 
