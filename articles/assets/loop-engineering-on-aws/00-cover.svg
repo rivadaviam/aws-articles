@@ -10,7 +10,7 @@
   <text x="102" y="238" fill="#FF9900" font-size="46" font-weight="700">that writes them.</text>
 
   <!-- subtitle -->
-  <text x="102" y="300" fill="#8FA3B8" font-size="26">Loop engineering, mapped to six AWS services</text>
+  <text x="102" y="300" fill="#8FA3B8" font-size="26">Loop engineering, mapped to AWS services</text>
 
   <!-- logo mark -->
   <text x="940" y="388" fill="#8FA3B8" font-size="22" text-anchor="end">Build-to-Learn</text>

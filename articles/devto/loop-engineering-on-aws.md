@@ -1,9 +1,9 @@
 ---
 title: "Loop Engineering on AWS: Stop Writing Prompts, Design the System That Writes Them"
-published: false
-description: "Addy Osmani named the shift from prompter to loop architect. Here's each of his six components mapped to a real AWS service."
+published: true
+description: "Addy Osmani named the shift from prompter to loop architect. Here's each component mapped to a real AWS service."
 tags: aws, aiagents, amazonbedrock, architecture
-cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/loop-engineering-on-aws/00-cover.png"
+cover_image: "https://raw.githubusercontent.com/rivadaviam/aws-articles/main/articles/assets/loop-engineering-on-aws/00-cover.png?v=2"
 canonical_url: ""
 ---
 
@@ -15,13 +15,13 @@ That's the whole idea behind a phrase Addy Osmani (engineering lead on Chrome De
 
 Osmani didn't invent the practice. The best teams were already doing it. He named it, and naming is what turns a scattered practice into shared vocabulary. Once someone with his credibility gives it a word, the industry starts using that word to argue about architecture.
 
-I build agent loops every day in my own tooling. Not a demo, not a weekend toy. A running system of scheduled tasks, skills, sub-agents, and memory that runs discovery and drafting on a cron tick, then hands me decisions instead of asking me to type. So when Osmani listed the six pieces of a loop, I recognized every one of them. What his post doesn't give you is the part I care about most: where does each piece actually *live* when you run it on AWS?
+I build agent loops every day in my own tooling. Not a demo, not a weekend toy. A running system of scheduled tasks, skills, sub-agents, and memory that runs discovery and drafting on a cron tick, then hands me decisions instead of asking me to type. So when Osmani listed the pieces of a loop, I recognized every one of them. What his post doesn't give you is the part I care about most: where does each piece actually *live* when you run it on AWS?
 
-That's the gap this article fills. Six components, six concrete services, one minimal loop you can trace end to end. And a warning at the end that I think matters more than any of the wiring.
+That's the gap this article fills. Every component, a concrete service, one minimal loop you can trace end to end. And a warning at the end that I think matters more than any of the wiring.
 
 ---
 
-## The six components, and why the timing is not an accident
+## The components, and why the timing is not an accident
 
 Osmani lists five components: automations, worktrees, skills, plugins (MCP), and sub-agents, plus memory as what he calls the sixth thing, state that lives outside the single conversation. Read that list as an architecture. Each part answers a different question. What triggers the work. Where the work runs in isolation. What the agent knows. How it reaches tools. Who does the specialized labor. And what it remembers between runs.
 
